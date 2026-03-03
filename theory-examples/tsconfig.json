@@ -1,0 +1,13 @@
+{
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests"
+  ],
+  "compilerOptions": {
+    "target": "ES2024",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist"
+  }
+}
