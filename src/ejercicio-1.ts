@@ -133,6 +133,7 @@ export class TFG_TFM extends Publicacion {
   }
 
   obtenerReferenciaIEEE(): string {
+    
     return `${this.autores.join(', ')}. "${this.título}", in ${this.ciudad}, ${this.universidad}, ${this.departamento}, ${this.tutores.join(', ')}, ${this.fechaPublicacion}, pp. ${this.paginas[0]}-${this.paginas[1]}.`;
   }
 }
@@ -162,7 +163,7 @@ export class miGestor {
   getElementos(): ElementoBiblio[] {
     return this.elementos;
   }
-  
+
   busquedaPorPalabraClave(palabraClave: string, elementos = this.elementos): ElementoBiblio[] {
     return elementos.filter((elemento) =>
       elemento.palabrasClave.includes(palabraClave)
