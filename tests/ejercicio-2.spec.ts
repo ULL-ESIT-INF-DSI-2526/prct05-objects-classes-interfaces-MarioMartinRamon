@@ -71,12 +71,17 @@ describe('Ejercicio 2', () => {
     const j2 = new Player('Jugador 2', 'A');
     const juego = new Juego(j1, j2);
 
-    for (let col = 0; col < 7; col++) {
-      for (let row = 0; row < 6; row++) {
-        const ficha = (row + col) % 2 === 0 ? 'R' : 'A';
-        expect(juego.colocarFicha(col, ficha)).toBe(true);
-      }
-    }
+    const tableroEmpate = [
+      ['R', 'A', 'R', 'A', 'R', 'A', 'R'],
+      ['A', 'R', 'A', 'R', 'A', 'R', 'A'],
+      ['R', 'A', 'R', 'A', 'R', 'A', 'R'],
+      ['R', 'A', 'R', 'A', 'R', 'A', 'R'],
+      ['A', 'R', 'A', 'R', 'A', 'R', 'A'],
+      ['R', 'A', 'R', 'A', 'R', 'A', 'R'],
+    ];
+    juego.hueco = tableroEmpate;
+    
+    console.log('Tablero lleno:');
     expect(juego.verificarGanador('R')).toBe(false);
     expect(juego.verificarGanador('A')).toBe(false);
   });

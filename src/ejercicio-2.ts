@@ -1,4 +1,4 @@
-type Ficha = 'R' | 'A';
+type Ficha = 'R' | 'A' | '.';
 
 interface Jugador {
   name: string;
@@ -16,13 +16,13 @@ export class Player implements Jugador {
 }
 
 abstract class Tablero {
-  private hueco: (Ficha | null)[][];
+  public hueco: (Ficha | string)[][];
   private readonly filas = 6;
   private readonly columnas = 7;
 
   constructor() {
     this.hueco = Array.from({ length: this.filas }, () =>
-      Array(this.columnas).fill(null)
+      Array(this.columnas).fill('.')
     );
   }
 
@@ -42,12 +42,75 @@ abstract class Tablero {
       return false;
     }
     for (let fila = this.filas - 1; fila >= 0; fila--) {
-      if (this.hueco[fila][columna] === null) {
+      if (this.hueco[fila][columna] === '.') {
         this.hueco[fila][columna] = ficha;
+        this.mostrarTabl();
+        console.log(`\nFicha ${ficha} colocada en columna ${columna}.\n`);
+
         return true;
       }
     }
     console.log('Columna llena.');
+    return false;
+  }
+
+    verificarGanador(ficha: Ficha): boolean {
+    // Verificar horizontal
+    for (let fila = 0; fila < this.filas; fila++) {
+      for (let col = 0; col <= this.columnas - 4; col++) {
+        // porque a partir de columna 4 ya no hay espacio para 4 fichas
+        if (
+          this.hueco[fila][col] === ficha &&
+          this.hueco[fila][col + 1] === ficha &&
+          this.hueco[fila][col + 2] === ficha &&
+          this.hueco[fila][col + 3] === ficha
+        ) {
+          return true;
+        }
+      }
+    }
+    // Verificar vertical
+    for (let col = 0; col < this.columnas; col++) {
+      for (let fila = 0; fila <= this.filas - 4; fila++) {
+        // porque a partir de fila 3 ya no hay espacio para 4 fichas
+        if (
+          this.hueco[fila][col] === ficha &&
+          this.hueco[fila + 1][col] === ficha &&
+          this.hueco[fila + 2][col] === ficha &&
+          this.hueco[fila + 3][col] === ficha
+        ) {
+          return true;
+        }
+      }
+    }
+
+    // Verificar diagonal (abajo a la derecha)
+    for (let fila = 0; fila <= this.filas - 4; fila++) {
+      for (let col = 0; col <= this.columnas - 4; col++) {
+        if (
+          this.hueco[fila][col] === ficha &&
+          this.hueco[fila + 1][col + 1] === ficha &&
+          this.hueco[fila + 2][col + 2] === ficha &&
+          this.hueco[fila + 3][col + 3] === ficha
+        ) {
+          return true;
+        }
+      }
+    }
+    // Verificar diagonal (arriba a la derecha)
+    for (let fila = 3; fila < this.filas; fila++) {
+      for (let col = 0; col <= this.columnas - 4; col++) {
+        if (
+          this.hueco[fila][col] === ficha &&
+          this.hueco[fila - 1][col + 1] === ficha &&
+          this.hueco[fila - 2][col + 2] === ficha &&
+          this.hueco[fila - 3][col + 3] === ficha
+        ) {
+          return true;
+        }
+      }
+    }
+    this.mostrarTabl();
     return false;
   }
 }
