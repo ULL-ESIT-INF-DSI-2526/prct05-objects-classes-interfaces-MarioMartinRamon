@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
-import { miGestor } from '../src/ejercicio-1';
+import { miGestor, Articulo} from '../src/ejercicio-1';
 
 describe('addElemento', () => {
-  test('debería agregar un elemento al gestor', () => {
+  test('Agregar un elemento al gestor', () => {
     const elemento = new Articulo(
       'Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training',
       [
@@ -37,7 +37,8 @@ describe('addElemento', () => {
       11,
       1,
     );
-    miGestor.addElemento(elemento);
-    expect(miGestor.getElementos()).toContain(elemento);
+    const gestor = new miGestor();
+    gestor.addElemento(elemento);
+    expect(gestor.getElementos()).toContain(elemento);
   });
 });
