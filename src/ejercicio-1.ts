@@ -162,4 +162,22 @@ export class miGestor {
   getElementos(): ElementoBiblio[] {
     return this.elementos;
   }
+  
+  busquedaPorPalabraClave(palabraClave: string, elementos = this.elementos): ElementoBiblio[] {
+    return elementos.filter((elemento) =>
+      elemento.palabrasClave.includes(palabraClave)
+    );
+  }
+  busquedaPorAutor(autor: string, elementos = this.elementos): ElementoBiblio[] {
+    return elementos.filter((elemento) => elemento.autores.includes(autor));
+  }
+  busquedaPorFecha(fecha: string, elementos = this.elementos): ElementoBiblio[] {
+    return elementos.filter((elemento) => elemento.fechaPublicacion === fecha);
+  }
+  busquedaPorTitulo(titulo: string, elementos = this.elementos): ElementoBiblio[] {
+    return elementos.filter((elemento) => elemento.título === titulo);
+  }
+  busquedaPorEditorial(editorial: string, elementos = this.elementos): ElementoBiblio[] {
+    return elementos.filter((elemento) => elemento.editorial === editorial);
+  }
 }

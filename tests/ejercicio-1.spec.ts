@@ -154,28 +154,28 @@ describe('addElemento', () => {
     const gestor = new miGestor();
     gestor.addElemento(elemento1);
     gestor.addElemento(elemento2);
-    const resultadosBusqueda = busquedaPorPalabraClave('TypeScript', gestor.getElementos());
+    const resultadosBusqueda = gestor.busquedaPorPalabraClave('TypeScript', gestor.getElementos());
     expect(resultadosBusqueda).toContain(elemento1);
     expect(resultadosBusqueda).toContain(elemento2);
 
-    const resultadosBusqueda2 = busquedaPorPalabraClave('POO', gestor.getElementos());
+    const resultadosBusqueda2 = gestor.busquedaPorPalabraClave('POO', gestor.getElementos());
     expect(resultadosBusqueda2).toContain(elemento1);
     expect(resultadosBusqueda2).not.toContain(elemento2);
 
-    const resultadosBusqueda3 = busquedaPorPalabraClave('Computer science', gestor.getElementos());
-    const filtroAutor = busquedaPorAutor('Coromoto León', resultadosBusqueda3);
+    const resultadosBusqueda3 = gestor.busquedaPorPalabraClave('Computer science', gestor.getElementos());
+    const filtroAutor = gestor.busquedaPorAutor('Coromoto León', resultadosBusqueda3);
     expect(filtroAutor).toContain(elemento2);
 
-    const resultadosBusqueda4 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
-    const filtroFecha = busquedaPorFecha('05 April 2022', resultadosBusqueda4);
+    const resultadosBusqueda4 = gestor.busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroFecha = gestor.busquedaPorFecha('05 April 2022', resultadosBusqueda4);
     expect(filtroFecha).toContain(elemento2);
 
-    const resultadosBusqueda5 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
-    const filtroTitulo = busquedaPorTitulo('Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training', resultadosBusqueda5);
+    const resultadosBusqueda5 = gestor.busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroTitulo = gestor.busquedaPorTitulo('Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training', resultadosBusqueda5);
     expect(filtroTitulo).toContain(elemento2);
 
-    const resultadosBusqueda6 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
-    const filtroEditorial = busquedaPorEditorial('IEEE', resultadosBusqueda6);
+    const resultadosBusqueda6 = gestor.busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroEditorial = gestor.busquedaPorEditorial('IEEE', resultadosBusqueda6);
     expect(filtroEditorial).toContain(elemento2);
   });
 });
