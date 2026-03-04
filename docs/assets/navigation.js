@@ -1,1 +1,2 @@
-window.navigationData = "eJyLrlYqSa0oUbJSSkxJUdJRKkgsyVCyUkorzUsuyczPK9ZPTEnRyyjJzVHSUcrOzEtRsjIzqY0FAOt9Eco="
+window.navigationData =
+  'eJyLrlYqSa0oUbJSSkxJUdJRKkgsyVCyUkorzUsuyczPK9ZPTEnRyyjJzVHSUcrOzEtRsjIzqY0FAOt9Eco=';
