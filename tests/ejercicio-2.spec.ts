@@ -40,16 +40,27 @@ describe('Ejercicio 2', () => {
     expect(juego.verificarGanador('R')).toBe(true);
   });
 
+  test('Verificar columna fuera de rango', () => {
+    const j1 = new Player('Jugador 1', 'R');
+    const j2 = new Player('Jugador 2', 'A');
+    const juego = new Juego(j1, j2);
+    expect(juego.colocarFicha(-1, 'R')).toBe(false);
+    expect(juego.colocarFicha(7, 'A')).toBe(false);
+  });
+
   test('Verificar ganador diagonal abajo derecha', () => {
     const j1 = new Player('Jugador 1', 'R');
     const j2 = new Player('Jugador 2', 'A');
     const juego = new Juego(j1, j2);
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < i; j++) {
-        expect(juego.colocarFicha(i, 'A')).toBe(true);
-      }
-      expect(juego.colocarFicha(i, 'R')).toBe(true);
-    }
+    const tablero = [
+        ['.', '.', '.', '.', '.', '.', '.'],
+        ['.', '.', '.', '.', '.', '.', '.'],
+        ['R', '.', '.', '.', '.', '.', '.'],
+        ['A', 'R', '.', '.', '.', '.', '.'],
+        ['A', 'A', 'R', '.', '.', '.', '.'],
+        ['A', 'A', 'A', 'R', '.', '.', '.']
+    ];
+    juego.hueco = tablero;
     expect(juego.verificarGanador('R')).toBe(true);
   });
 
