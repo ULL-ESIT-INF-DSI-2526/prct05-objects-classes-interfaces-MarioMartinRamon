@@ -51,14 +51,97 @@ export class Articulo extends Publicacion {
   }
 }
 
+export class Libro extends Publicacion {
+  constructor(
+    título: string,
+    autores: string[],
+    palabrasClave: string[],
+    resumen: string,
+    fechaPublicacion: string,
+    paginas: number[],
+    editorial: string,
+    public tituloLibro: string,
+    public ciudad: string
+  ) {
+    super(
+      título,
+      autores,
+      palabrasClave,
+      resumen,
+      fechaPublicacion,
+      paginas,
+      editorial
+    );
+  }
+
+  obtenerReferenciaIEEE(): string {
+    return `${this.autores.join(', ')}. "${this.título}", in ${this.tituloLibro}, ${this.ciudad}: ${this.editorial}, ${this.fechaPublicacion}, pp. ${this.paginas[0]}-${this.paginas[1]}.`;
+  }
+}
+
+export class ContribucionCongreso extends Publicacion {
+  constructor(
+    título: string,
+    autores: string[],
+    palabrasClave: string[],
+    resumen: string,
+    fechaPublicacion: string,
+    paginas: number[],
+    editorial: string,
+    public nombreCongreso: string,
+    public lugarCongreso: string
+  ) {
+    super(
+      título,
+      autores,
+      palabrasClave,
+      resumen,
+      fechaPublicacion,
+      paginas,
+      editorial
+    );
+  }
+
+  obtenerReferenciaIEEE(): string {
+    return `${this.autores.join(', ')}. "${this.título}", in ${this.nombreCongreso}, ${this.lugarCongreso}, ${this.fechaPublicacion}, pp. ${this.paginas[0]}-${this.paginas[1]}.`;
+  }
+}
+
+export class TFG_TFM extends Publicacion {
+  constructor(
+    título: string,
+    autores: string[],
+    palabrasClave: string[],
+    resumen: string,
+    fechaPublicacion: string,
+    paginas: number[],
+    editorial: string,
+    public universidad: string,
+    public tutores: string[],
+    public departamento: string,
+    public ciudad: string
+  ) {
+    super(
+      título,
+      autores,
+      palabrasClave,
+      resumen,
+      fechaPublicacion,
+      paginas,
+      editorial
+    );
+  }
+
+  obtenerReferenciaIEEE(): string {
+    return `${this.autores.join(', ')}. "${this.título}", in ${this.ciudad}, ${this.universidad}, ${this.departamento}, ${this.tutores.join(', ')}, ${this.fechaPublicacion}, pp. ${this.paginas[0]}-${this.paginas[1]}.`;
+  }
+}
+
 export class miGestor {
   private elementos: ElementoBiblio[] = [];
 
   addElemento(elemento: ElementoBiblio): void {
     this.elementos.push(elemento);
-  }
-  showTabla(): void {
-    console.table(this.elementos);
   }
   getElementos(): ElementoBiblio[] {
     return this.elementos;
