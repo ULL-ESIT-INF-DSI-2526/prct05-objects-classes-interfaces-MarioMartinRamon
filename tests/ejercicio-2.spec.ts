@@ -10,7 +10,7 @@ describe('Ejercicio 2', () => {
     expect(juego.colocarFicha(0, 'A')).toBe(true);
   });
 
-    test('Colocar ficha en columna llena', () => {
+  test('Colocar ficha en columna llena', () => {
     const j1 = new Player('Jugador 1', 'R');
     const j2 = new Player('Jugador 2', 'A');
     const juego = new Juego(j1, j2);
@@ -20,7 +20,7 @@ describe('Ejercicio 2', () => {
     expect(juego.colocarFicha(0, 'A')).toBe(false);
   });
 
-    test('Verificar ganador horizontal', () => {
+  test('Verificar ganador horizontal', () => {
     const j1 = new Player('Jugador 1', 'R');
     const j2 = new Player('Jugador 2', 'A');
     const juego = new Juego(j1, j2);
@@ -80,9 +80,52 @@ describe('Ejercicio 2', () => {
       ['R', 'A', 'R', 'A', 'R', 'A', 'R'],
     ];
     juego.hueco = tableroEmpate;
-    
+
     console.log('Tablero lleno:');
     expect(juego.verificarGanador('R')).toBe(false);
     expect(juego.verificarGanador('A')).toBe(false);
+  });
+
+  test('Iniciar el juego y jugar turnos', () => {
+    const j1 = new Player('Jugador 1', 'R');
+    const j2 = new Player('Jugador 2', 'A');
+    const juego = new Juego(j1, j2);
+
+    expect(juego.jugarTurno(0, j1)).toBe(false);
+    expect(juego.jugarTurno(0, j2)).toBe(false);
+    expect(juego.jugarTurno(1, j1)).toBe(false);
+    expect(juego.jugarTurno(1, j2)).toBe(false);
+    expect(juego.jugarTurno(2, j1)).toBe(false);
+    expect(juego.jugarTurno(2, j2)).toBe(false);
+    expect(juego.jugarTurno(3, j1)).toBe(true); // Jugador 1 gana
+  });
+
+  test('No repetir turno', () => {
+    const j1 = new Player('Jugador 1', 'R');
+    const j2 = new Player('Jugador 2', 'A');
+    const juego = new Juego(j1, j2);
+
+    expect(juego.jugarTurno(0, j1)).toBe(false);
+    expect(juego.jugarTurno(0, j1)).toBe(false); // No se puede jugar dos veces seguidas
+    expect(juego.jugarTurno(0, j2)).toBe(false);
+    expect(juego.jugarTurno(0, j2)).toBe(false); // No se puede jugar dos veces seguidas
+  });
+
+  test('Columna llena, no se puede colocar ficha, le vuelve a tocar al mismo jugador', () => {
+    const j1 = new Player('Jugador 1', 'R');
+    const j2 = new Player('Jugador 2', 'A');
+    const juego = new Juego(j1, j2);
+    const tablero = [
+        ['R', '.', '.', '.', '.', '.', '.'],
+        ['A', '.', '.', '.', '.', '.', '.'],
+        ['R', '.', '.', '.', '.', '.', '.'],
+        ['A', '.', '.', '.', '.', '.', '.'],
+        ['R', '.', '.', '.', '.', '.', '.'],
+        ['R', '.', '.', '.', '.', '.', '.']
+    ];
+    juego.hueco = tablero;
+    expect(juego.jugarTurno(0, j1)).toBe(false); // No se puede colocar ficha
+    expect(juego.jugarTurno(0, j2)).toBe(false); // No se puede colocar ficha, sigue siendo el turno de j1
+    expect(juego.jugarTurno(1, j1)).toBe(false); // j1 juega en otra columna
   });
 });

@@ -54,7 +54,7 @@ abstract class Tablero {
     return false;
   }
 
-    verificarGanador(ficha: Ficha): boolean {
+  verificarGanador(ficha: Ficha): boolean {
     // Verificar horizontal
     for (let fila = 0; fila < this.filas; fila++) {
       for (let col = 0; col <= this.columnas - 4; col++) {
@@ -110,7 +110,6 @@ abstract class Tablero {
         }
       }
     }
-    this.mostrarTabl();
     return false;
   }
 }
@@ -118,10 +117,15 @@ abstract class Tablero {
 export class Juego extends Tablero {
   private jugador1: Player;
   private jugador2: Player;
+  private turno: Player;
 
   constructor(jugador1: Player, jugador2: Player) {
     super();
     this.jugador1 = jugador1;
     this.jugador2 = jugador2;
+    this.turno = jugador1;
+  }
+  mostrarTablero(): void {
+    this.mostrarTabl();
   }
 }
