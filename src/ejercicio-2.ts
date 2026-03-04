@@ -125,7 +125,35 @@ export class Juego extends Tablero {
     this.jugador2 = jugador2;
     this.turno = jugador1;
   }
-  mostrarTablero(): void {
-    this.mostrarTabl();
+
+  cambiarTurno(): void {
+    if (this.turno === this.jugador1) {
+      this.turno = this.jugador2;
+      console.log(`Turno de ${this.turno.name} (${this.turno.ficha})\n`);
+    } else {
+      this.turno = this.jugador1;
+      console.log(`Turno de ${this.turno.name} (${this.turno.ficha})\n`);
+    }
+  }
+
+  jugarTurno(columna: number, jugador: Player): boolean {
+    let fichaColocada = false;
+    if (jugador !== this.turno) {
+      console.log(`No es el turno de ${jugador.name}.\n`);
+      return false;
+    }
+    while (!fichaColocada) {
+      fichaColocada = this.colocarFicha(columna, jugador.ficha);
+      if (fichaColocada) {
+        if (this.verificarGanador(jugador.ficha)) {
+          console.log(`${jugador.name} ha ganado!`);
+          return true;
+        }
+        this.cambiarTurno();
+        return false;
+      }
+      console.log('Intenta colocar la ficha en otra columna.');
+      return false;
+    }
   }
 }
