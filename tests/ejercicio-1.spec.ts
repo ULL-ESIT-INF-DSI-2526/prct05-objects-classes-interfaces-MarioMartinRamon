@@ -114,4 +114,69 @@ describe('addElemento', () => {
     expect(gestor.getElementos()).toContain(congresoTest);
     expect(gestor.showTabla()).toBeUndefined(); // showTabla() no devuelve nada, solo muestra la tabla en consola
   });
+
+  test('Filtros de búsqueda', () => {
+    const elemento1 = new TFG_TFM(
+      'Diseño e Implementación de un Gestor de Referencias Bibliográficas en TypeScript',
+      ['Estudiante'],
+      ['TypeScript', 'POO', 'Gestor Bibliográfico', 'IEEE'],
+      `Este Trabajo de Fin de Grado detalla el desarrollo de una herramienta de gestión bibliográfica utilizando TypeScript y aplicando principios de Programación Orientada a Objetos y TDD.`,
+      '12 feb 2024',
+      [1, 50],
+      'RIULL',
+      'Universidad de La Laguna',
+      ['Profesor Tutor 1', 'Profesor Tutor 2'],
+      'Dept. de Ingeniería Informática y de Sistemas',
+      'San Cristóbal de La Laguna, España'
+    );
+    const elemento2 = new Articulo(
+      'Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training',
+      [
+        'Rafael Herrero-Álvarez',
+        'Estudiante',
+        'Coromoto León',
+        'Eduardo Segredo',
+      ],
+      [
+        'Computer science',
+        'computational thinking',
+        'TypeScript',
+        'Gestor Bibliográfico',
+        'IEEE',
+      ],
+      `Un buen resumen del artículo.`,
+      '05 April 2022',
+      [56, 69],
+      'IEEE',
+      11,
+      1,
+    );
+    const gestor = new miGestor();
+    gestor.addElemento(elemento1);
+    gestor.addElemento(elemento2);
+    const resultadosBusqueda = busquedaPorPalabraClave('TypeScript', gestor.getElementos());
+    expect(resultadosBusqueda).toContain(elemento1);
+    expect(resultadosBusqueda).toContain(elemento2);
+
+    const resultadosBusqueda2 = busquedaPorPalabraClave('POO', gestor.getElementos());
+    expect(resultadosBusqueda2).toContain(elemento1);
+    expect(resultadosBusqueda2).not.toContain(elemento2);
+
+    const resultadosBusqueda3 = busquedaPorPalabraClave('Computer science', gestor.getElementos());
+    const filtroAutor = busquedaPorAutor('Coromoto León', resultadosBusqueda3);
+    expect(filtroAutor).toContain(elemento2);
+
+    const resultadosBusqueda4 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroFecha = busquedaPorFecha('05 April 2022', resultadosBusqueda4);
+    expect(filtroFecha).toContain(elemento2);
+
+    const resultadosBusqueda5 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroTitulo = busquedaPorTitulo('Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training', resultadosBusqueda5);
+    expect(filtroTitulo).toContain(elemento2);
+
+    const resultadosBusqueda6 = busquedaPorPalabraClave('IEEE', gestor.getElementos());
+    const filtroEditorial = busquedaPorEditorial('IEEE', resultadosBusqueda6);
+    expect(filtroEditorial).toContain(elemento2);
+  });
 });
+

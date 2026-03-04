@@ -143,12 +143,12 @@ export class miGestor {
   addElemento(elemento: ElementoBiblio): void {
     this.elementos.push(elemento);
   }
-  showTabla(): void {
+  showTabla(elementos = this.elementos): void {
 
     // Formateamos limpio para la tabla
 
     console.table(
-      this.elementos.map((elemento) => ({
+      elementos.map((elemento) => ({
         Título: elemento.título,
         Autores: elemento.autores.join(', '),
         PalabrasClave: elemento.palabrasClave.join(', '),
