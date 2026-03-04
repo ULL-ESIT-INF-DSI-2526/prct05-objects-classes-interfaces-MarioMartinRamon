@@ -178,5 +178,79 @@ describe('addElemento', () => {
     const filtroEditorial = gestor.busquedaPorEditorial('IEEE', resultadosBusqueda6);
     expect(filtroEditorial).toContain(elemento2);
   });
+
+  test('Mostrar formato IEEE', () => {
+    const elemento1 = new TFG_TFM(
+      'Diseño e Implementación de un Gestor de Referencias Bibliográficas en TypeScript',
+      ['Estudiante'],
+      ['TypeScript', 'POO', 'Gestor Bibliográfico', 'IEEE'],
+      `Este Trabajo de Fin de Grado detalla el desarrollo de una herramienta de gestión bibliográfica utilizando TypeScript y aplicando principios de Programación Orientada a Objetos y TDD.`,
+      '12 feb 2024',
+      [1, 50],
+      'RIULL',
+      'Universidad de La Laguna',
+      ['Profesor Tutor 1', 'Profesor Tutor 2'],
+      'Dept. de Ingeniería Informática y de Sistemas',
+      'San Cristóbal de La Laguna, España'
+    );
+    const elemento2 = new Articulo(
+      'Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training',
+      [
+        'Rafael Herrero-Álvarez',
+        'Estudiante',
+        'Coromoto León',
+        'Eduardo Segredo',
+      ],
+      [
+        'Computer science',
+        'computational thinking',
+        'TypeScript',
+        'Gestor Bibliográfico',
+        'IEEE',
+      ],
+      `Un buen resumen del artículo.`,
+      '05 April 2022',
+      [56, 69],
+      'IEEE',
+      11,
+      1,
+    );
+    const capituloTest = new Libro(
+      'Generating diverse and discriminatory knapsack instances by searching for novelty in variable dimensions of feature-space',
+      ['Alejandro Marrero', 'Eduardo Segredo', 'Emma Hart', 'Coromoto León'],
+      ['Knapsack Problem', 'Novelty Search', 'Instance Space'],
+      `In this paper, we propose a novel approach to generating diverse and discriminatory instances for the Knapsack Problem using novelty search.`,
+      '14 August 2022',
+      [223, 236],
+      'Springer',
+      'Parallel Problem Solving from Nature - PPSN XVII',
+      'Cham',
+    );
+
+    const congresoTest = new ContribucionCongreso(
+    "A Generating diverse and discriminatory knapsack instances by searching for novelty in variable dimensions of feature-space",
+    ['Alejandro Marrero', 'Eduardo Segredo', 'Coromoto León', 'Emma Hart'],
+    ['search methodologies', 'evolutionary computation'],
+    `The Rubik's cube is arguably the most popular combinatorial puzzle. We propose a quality diversity approach to assemble it based on MAP-Elites.`,
+    '2023',
+    [1047, 1055],
+    'ACM',
+    "Proceedings of the Genetic and Evolutionary Computation Conference (GECCO '23)",
+    'Lisbon, Portugal'
+  );
+
+    expect(elemento1.obtenerReferenciaIEEE()).toBe(
+      'Estudiante. "Diseño e Implementación de un Gestor de Referencias Bibliográficas en TypeScript", in San Cristóbal de La Laguna, España, Universidad de La Laguna, Dept. de Ingeniería Informática y de Sistemas, Profesor Tutor 1, Profesor Tutor 2, 12 feb 2024, pp. 1-50.'
+    );
+    expect(elemento2.obtenerReferenciaIEEE()).toBe(
+      'Rafael Herrero-Álvarez, Estudiante, Coromoto León, Eduardo Segredo. "Engaging Primary and Secondary School Students in Computer Science Through Computational Thinking Training", IEEE, vol. 11, no. 1, pp. 56-69, 05 April 2022.'
+    );
+    expect(capituloTest.obtenerReferenciaIEEE()).toBe(
+      'Alejandro Marrero, Eduardo Segredo, Emma Hart, Coromoto León. "Generating diverse and discriminatory knapsack instances by searching for novelty in variable dimensions of feature-space", in Parallel Problem Solving from Nature - PPSN XVII, Cham: Springer, 14 August 2022, pp. 223-236.'
+    );
+    expect(congresoTest.obtenerReferenciaIEEE()).toBe(
+      'Alejandro Marrero, Eduardo Segredo, Coromoto León, Emma Hart. "A Generating diverse and discriminatory knapsack instances by searching for novelty in variable dimensions of feature-space", in Proceedings of the Genetic and Evolutionary Computation Conference (GECCO \'23), Lisbon, Portugal, 2023, pp. 1047-1055.'
+    );
+});
 });
 
