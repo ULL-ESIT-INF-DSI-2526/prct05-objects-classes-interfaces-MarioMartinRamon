@@ -30,7 +30,7 @@ abstract class Tablero {
     console.log(
       this.hueco
         .map((fila) =>
-          fila.map((celda) => '[' + celda + ']' || '[.]').join(' ')
+          fila.map((celda) => '[' + celda + ']').join(' ')
         )
         .join('\n')
     );
