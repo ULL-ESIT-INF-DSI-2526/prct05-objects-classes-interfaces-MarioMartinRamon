@@ -29,9 +29,7 @@ abstract class Tablero {
   mostrarTabl(): void {
     console.log(
       this.hueco
-        .map((fila) =>
-          fila.map((celda) => '[' + celda + ']').join(' ')
-        )
+        .map((fila) => fila.map((celda) => '[' + celda + ']').join(' '))
         .join('\n')
     );
   }
