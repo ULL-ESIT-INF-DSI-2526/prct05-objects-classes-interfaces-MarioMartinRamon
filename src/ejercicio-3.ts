@@ -45,10 +45,18 @@ export class Receta implements IReceta {
     this.pasos = pasos;
   }
 
+  /**
+   * Obtiene el número total de pasos de la receta contando tanto los pasos opcionales como los no opcionales.
+   * @returns El número total de pasos de la receta.
+   */
   obtenerNumeroPasos(): number {
     return this.pasos.length;
   }
 
+  /**
+   * Calcula la duración total de la receta sumando la duración de todos los pasos. Si hay pasos opcionales, se muestra un rango de duración mínima (sin los pasos opcionales) y máxima (con todos los pasos).
+   * @returns La duración total de la receta en formato de cadena, indicando el rango si hay pasos opcionales.
+   */
   obtenerDuracionTotal(): string {
     let min = 0;
     let max = 0;
@@ -109,10 +117,17 @@ type FilaTabla = {
 export class GestorRecetas {
   private chefs: Chef[] = [];
 
+  /**
+   * Agrega un chef al gestor de recetas.
+   * @param chef El chef a agregar al gestor de recetas.
+   */
   agregarChef(chef: Chef): void {
     this.chefs.push(chef);
   }
 
+  /**
+   * Muestra toda la información de los chefs, recetas y pasos en formato de tabla.
+   */
   mostrarInfo(): void {
     const datosTabla: FilaTabla[] = [];
     this.chefs.forEach((chef) => {
@@ -131,6 +146,12 @@ export class GestorRecetas {
     });
     console.table(datosTabla);
   }
+
+  /**
+   * Busca un chef por su nombre en la lista de chefs.
+   * @param nombre El nombre del chef a buscar.
+   * @returns El chef encontrado o undefined si no se encuentra ningún chef con ese nombre
+   */
 
   buscarChef(nombre: string): Chef | undefined {
     const busqueda = this.chefs.find((chef) => chef.nombre === nombre);
@@ -158,6 +179,11 @@ export class GestorRecetas {
     }
   }
 
+  /**
+   * Busca una receta por su nombre en todas las recetas de todos los chefs.
+   * @param nombre El nombre de la receta a buscar.
+   * @returns La receta encontrada o undefined si no se encuentra ninguna receta
+   */
   buscarReceta(nombre: string): Receta | undefined {
     for (const chef of this.chefs) {
       const recetaEncontrada = chef.recetario.recetas.find(
@@ -186,6 +212,11 @@ export class GestorRecetas {
     return undefined;
   }
 
+  /**
+   * Busca un paso por su nombre en todas las recetas de todos los chefs.
+   * @param nombre El nombre del paso a buscar.
+   * @returns El paso encontrado o undefined si no se encuentra ningún paso
+   */
   buscarPaso(nombre: string): Pasos | undefined {
     for (const chef of this.chefs) {
       for (const receta of chef.recetario.recetas) {
