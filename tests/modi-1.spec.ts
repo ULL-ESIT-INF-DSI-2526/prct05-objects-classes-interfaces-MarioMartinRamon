@@ -16,7 +16,7 @@ describe('Creacion correcta de Jugador y equipo', () => {
       5
     );
     expect(j1.perfil()).toBe(
-      'ID: 1, Nombre: Juan, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 10, Tag: LOLOL, Rank: oro, Partidas: 5'
+      'ID: 1, Nombre: Juan, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 10, Tag: LOLOL, Rank: oro, Partidas: 5'
     );
   });
 
@@ -55,7 +55,7 @@ describe('Creacion correcta de Jugador y equipo', () => {
       2
     );
     expect(equipo.perfil()).toBe(
-      'ID: 10, Nombre: LOleros, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 15, Sponsor: Nvidia, Tags: LOLOL, JEJE, '
+      'ID: 10, Nombre: LOleros, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 15, Sponsor: Nvidia, Tags: LOLOL, JEJE, '
     );
   });
 
@@ -171,8 +171,8 @@ describe('Creacion correcta de Jugador y equipo', () => {
 
     const torneo: Torneo = new Torneo(jugadores_individuales, equipos, 6);
 
-    expect(torneo.listar_equipos()).toBe(`ID: 10, Nombre: LOleros, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 15, Sponsor: Nvidia, Tags: LOLOL, JEJE, ID: 10, Nombre: FORTNITERS, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 15, Sponsor: PSEC, Tags: LOLOL, JEJE, `)
-    expect(torneo.listar_jugadores()).toBe('ID: 3, Nombre: SEES, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 5, Tag: PROGAMER, Rank: diamante, Partidas: 14ID: 3, Nombre: NN, País: ESP, Fecha Inscripción: Wed Jun 11 2025 00:00:00 GMT+0000 (tiempo universal coordinado), Puntuación: 5, Tag: OOP, Rank: oro, Partidas: 14');
+    expect(torneo.listar_equipos()).toBe(`ID: 10, Nombre: LOleros, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 15, Sponsor: Nvidia, Tags: LOLOL, JEJE, ID: 10, Nombre: FORTNITERS, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 15, Sponsor: PSEC, Tags: LOLOL, JEJE, `)
+    expect(torneo.listar_jugadores()).toBe('ID: 3, Nombre: SEES, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 5, Tag: PROGAMER, Rank: diamante, Partidas: 14ID: 3, Nombre: NN, País: ESP, Fecha Inscripción: 11/6/2025, Puntuación: 5, Tag: OOP, Rank: oro, Partidas: 14');
   });
 
       test('Buscar participantes', () => {

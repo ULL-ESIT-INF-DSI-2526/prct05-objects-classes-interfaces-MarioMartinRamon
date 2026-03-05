@@ -29,6 +29,6 @@ export class Jugador extends Participante {
 
 
   perfil(): string {
-    return `ID: ${this.g_id}, Nombre: ${this.g_name}, País: ${this.g_pais}, Fecha Inscripción: ${this.g_fechaInsc}, Puntuación: ${this.g_puntuacion}, Tag: ${this.tag}, Rank: ${this.rank}, Partidas: ${this.partidas}`;
+    return `ID: ${this.g_id}, Nombre: ${this.g_name}, País: ${this.g_pais}, Fecha Inscripción: ${this.g_fechaInsc.toLocaleDateString()}, Puntuación: ${this.g_puntuacion}, Tag: ${this.tag}, Rank: ${this.rank}, Partidas: ${this.partidas}`;
   }
 }

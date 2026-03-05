@@ -34,6 +34,6 @@ export class Equipo extends Participante {
     for (const tag of this.tags) {
       gametag += tag.g_tag + ', ';
     }
-    return `ID: ${this.g_id}, Nombre: ${this.g_name}, País: ${this.g_pais}, Fecha Inscripción: ${this.g_fechaInsc}, Puntuación: ${this.g_puntuacion}, Sponsor: ${this.sponsor}, Tags: ${gametag}`;
+    return `ID: ${this.g_id}, Nombre: ${this.g_name}, País: ${this.g_pais}, Fecha Inscripción: ${this.g_fechaInsc.toLocaleDateString()}, Puntuación: ${this.g_puntuacion}, Sponsor: ${this.sponsor}, Tags: ${gametag}`;
   }
 }
