@@ -25,7 +25,7 @@ abstract class Tablero {
       Array(this.columnas).fill('.')
     );
   }
-  
+
   /**
    * Muestra el tablero en la consola de forma visual, con cada celda representada por su ficha o un punto si está vacía.
    */
@@ -36,7 +36,7 @@ abstract class Tablero {
         .join('\n')
     );
   }
-  
+
   /**
    * Pone una ficha en la columna especificada, buscando desde la fila más baja hacia arriba para colocarla en el primer espacio disponible. Si la columna está llena o fuera de rango, se muestra un mensaje de error.
    * @param columna El número de columna donde se desea colocar la ficha
@@ -62,7 +62,7 @@ abstract class Tablero {
   }
 
   /**
-   * Verifica si el jugador con la ficha especificada ha ganado el juego al tener cuatro fichas consecutivas en horizontal, vertical o diagonal. 
+   * Verifica si el jugador con la ficha especificada ha ganado el juego al tener cuatro fichas consecutivas en horizontal, vertical o diagonal.
    * @param ficha La ficha del jugador que se desea verificar si ha ganado el juego
    * @returns true si el jugador ha ganado el juego, false si no ha ganado aún
    */
@@ -153,12 +153,12 @@ export class Juego extends Tablero {
 
   /**
    * Juega un turno para el jugador actual, intentando colocar su ficha en la columna especificada.
-   *  Si la jugada es válida y se coloca la ficha, se verifica si el jugador ha ganado el juego. 
-   * Si gana, se muestra un mensaje de victoria; si no, se cambia el turno al siguiente jugador. 
+   *  Si la jugada es válida y se coloca la ficha, se verifica si el jugador ha ganado el juego.
+   * Si gana, se muestra un mensaje de victoria; si no, se cambia el turno al siguiente jugador.
    * Si la jugada no es válida (columna llena o fuera de rango), se muestra un mensaje de error y no se cambia el turno.
-   * @param columna 
-   * @param jugador 
-   * @returns 
+   * @param columna
+   * @param jugador
+   * @returns
    */
   jugarTurno(columna: number, jugador: Player): boolean {
     let fichaColocada = false;

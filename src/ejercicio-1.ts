@@ -146,7 +146,7 @@ export class TFG_TFM extends Publicacion {
 
   /**
    * Obtiene la referencia bibliográfica en formato IEEE para un Trabajo de Fin de Grado o Máster, incluyendo el título, autores, universidad, tutores, departamento, ciudad, fecha de publicación y páginas.
-   * @returns Devuelve la referencia bibliográfica en formato IEEE para el TFG o TFM. 
+   * @returns Devuelve la referencia bibliográfica en formato IEEE para el TFG o TFM.
    */
   obtenerReferenciaIEEE(): string {
     return `${this.autores.join(', ')}. "${this.título}", in ${this.ciudad}, ${this.universidad}, ${this.departamento}, ${this.tutores.join(', ')}, ${this.fechaPublicacion}, pp. ${this.paginas[0]}-${this.paginas[1]}.`;
@@ -238,7 +238,7 @@ export class miGestor {
    * @param elementos Un array opcional de elementos bibliográficos en el cual realizar la búsqueda.
    * @returns Un array de elementos bibliográficos que contienen el título especificado.
    */
-  
+
   busquedaPorTitulo(
     titulo: string,
     elementos = this.elementos

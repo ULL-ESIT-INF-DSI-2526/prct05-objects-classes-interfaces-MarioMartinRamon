@@ -227,7 +227,8 @@ export class GestorRecetas {
           const datosTabla: FilaTabla[] = [];
           datosTabla.push({
             Chef: chef.nombre,
-            Tipo: chef instanceof ChefProfesional ? 'Profesional' : 'Aficionado',
+            Tipo:
+              chef instanceof ChefProfesional ? 'Profesional' : 'Aficionado',
             Seguidores: chef.seguidores,
             Receta: receta.nombre,
             'Año publicación': receta.fecha,
